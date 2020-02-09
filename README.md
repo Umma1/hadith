@@ -6,4 +6,4 @@
 
 ## Welcome to Hadith
 
-Hadith is python library that aims to help scholar of hadith to do quantitative research.
+Hadith is python library that aims to help scholars of hadith to do quantitative research.
