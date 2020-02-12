@@ -1,5 +1,5 @@
 
-# <div dir="rtl" align="center" >بسم الله الرحمان الرحيم</div>
+# <div dir="rtl" align="center">بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيم</div>
 
 ## <div dir="rtl"> مرحبا بكم إلي حزمة حديث </div>
 
