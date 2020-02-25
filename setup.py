@@ -11,6 +11,7 @@ setup(
     url="https://github.com/Umma1/hadith/",
     packages=find_packages(),
     classifiers=[
+        "Development Status :: 3 - Alpha",
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
