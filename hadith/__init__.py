@@ -14,4 +14,4 @@ __all__ = [
     Sunan_Ibn_Maja
 ]
 
-__version__ = "0.0.2"
+__version__ = "0.0.2a1"
