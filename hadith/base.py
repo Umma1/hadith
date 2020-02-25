@@ -1,3 +1,4 @@
+import json
 import os
 
 import pandas as pd
@@ -5,14 +6,19 @@ import pandas as pd
 
 class MuhadithMixin:
     """Mixin for Muhadithins (محدّثين)
-    مجموعة دوّال  ستستخدم في لكل المحدّثين
+    مجموعة دوالّ مستخدمة لكل المحدّثين
     """
     def __init__(self):
         self.base_path = os.path.dirname(os.path.abspath(__file__))
         self._data_loaded = False
+        self._info_loaded = False
 
     def _load_data(self, file_name):
         return pd.read_csv(file_name, encoding='utf8')
+
+    def _load_json(self, file_name):
+        with open(file_name, "rb", encoding="utf8") as info:
+            return json.load(info)
 
     def get_hadiths(self, with_tashkil=True):
         """Returns all hadiths for Muhadith"""
@@ -29,6 +35,20 @@ class MuhadithMixin:
 
         return self._data
 
+    def muhadith_info(self):
+        file_path = os.path.join(self.base_path, "data", "info")
+        file_path = os.path.join(file_path, self.info_filename)
+
+        if not os.path.exists(file_path):
+            raise IOError("The info file for Muhadith is missing"
+                          f" from path: {file_path}")
+
+        if not self._info_loaded:
+            self._info = self._load_json(file_path)
+            self._info_loaded = True
+
+        return self._info
+
 
 class Sahih_Bukhari(MuhadithMixin):
     """Loads and handles hadiths reported by Sahih Bukhari
@@ -37,6 +57,7 @@ class Sahih_Bukhari(MuhadithMixin):
     def __init__(self):
         super(Sahih_Bukhari, self).__init__()
         self.filename_with_tashkil = "Sahih_Bukhari.csv.gz"
+        self.info_filename = "Sahih_Bukhari.json"
 
 
 class Sahih_Muslim(MuhadithMixin):
@@ -55,6 +76,9 @@ class Muwatta_Malik(MuhadithMixin):
     def __init__(self):
         super(Muwatta_Malik, self).__init__()
         self.filename_with_tashkil = "Maliks_Muwatta.csv.gz"
+
+    def muhadith_info(self):
+        pass
 
 
 class Musnad_Ahmed(MuhadithMixin):
@@ -77,7 +101,7 @@ class Sunan_Abu_Dawud(MuhadithMixin):
 
 class Sunan_Al_Darami(MuhadithMixin):
     """Loads and handles hadiths reported by Sunan Al Darami
-    سنن الدّرامي
+    سنن الدارمي
     """
     def __init__(self):
         super(Sunan_Al_Darami, self).__init__()

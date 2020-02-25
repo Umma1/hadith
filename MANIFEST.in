@@ -1,1 +1,2 @@
-include hadith/data/*
+include hadith/data/*.csv.gz
+include hadith/data/info/*.json
