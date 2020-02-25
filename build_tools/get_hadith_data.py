@@ -1,3 +1,8 @@
+"""
+This module handles downloaded the hadith data from
+https://github.com/abdelrahmaan/Hadith-Data-Sets.git
+preprocess the filename and update the hadith's package data
+"""
 import glob
 import os
 import shutil
