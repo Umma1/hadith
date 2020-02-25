@@ -16,9 +16,9 @@ class MuhadithMixin:
     def _load_data(self, file_name):
         return pd.read_csv(file_name, encoding='utf8')
 
-    def _load_json(self, file_name):
+    def _load_yaml(self, file_name):
         with open(file_name, "rb", encoding="utf8") as info:
-            return json.load(info)
+            return yaml.safe_load(info)
 
     def get_hadiths(self, with_tashkil=True):
         """Returns all hadiths for Muhadith"""
@@ -44,7 +44,7 @@ class MuhadithMixin:
                           f" from path: {file_path}")
 
         if not self._info_loaded:
-            self._info = self._load_json(file_path)
+            self._info = self._load_yaml(file_path)
             self._info_loaded = True
 
         return self._info
