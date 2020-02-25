@@ -1,7 +1,7 @@
 """
-This module handles downloaded the hadith data from
+تهتمّ هذه الوحدة البرمجية بتزيل البيانات من
 https://github.com/abdelrahmaan/Hadith-Data-Sets.git
-preprocess the filename and update the hadith's package data
+و معالجتها لتغيير أسماء الملفات بطريقة تتماشى مع مكتبة حديث
 """
 import glob
 import os
@@ -9,7 +9,8 @@ import shutil
 import tempfile
 
 workdirectory = os.path.dirname(os.path.realpath(__file__))
-# the list of files that will be kept from the original data repo
+
+# أسماء الملفات التي نحتاجها
 files = [
     "Maliks Muwatta.csv",
     "Musnad Ahmad ibn Hanbal.csv",
@@ -23,7 +24,7 @@ files = [
 ]
 final_names_mapping = {f: f.replace(" ", "_") for f in files}
 
-# temporary directory to clone the hadith data
+# مجلد سيتعمل وقتيا ثم يمحى
 tmp = tempfile.mkdtemp()
 data_repo = "https://github.com/abdelrahmaan/Hadith-Data-Sets.git"
 os.chdir(tmp)
@@ -33,18 +34,19 @@ parent_directory = os.path.dirname(workdirectory)
 print(parent_directory)
 hadith_data_folder = os.path.join(parent_directory, "hadith/data/")
 
-# clean up the repo data folder
+# نظّف مجلّد البيانات في مكتبة حديث
 for _file in glob.glob(f"{hadith_data_folder}/*.csv*"):
     if os.path.exists(_file):
         os.remove(_file)
 
-# write the clone data files into the repo data file
+# ضع ملفات البيانات الجديدة في مجلّد البيانات في مكتبة حديث
 for filename, new_filename in final_names_mapping.items():
     current_file = os.path.join(repo, filename)
     destination_file = os.path.join(
         parent_directory, "hadith/data/", new_filename)
     shutil.move(current_file, destination_file)
 
+# محو المجلّد الوقتي
 shutil.rmtree(tmp)
 
 data_files = os.path.join(hadith_data_folder, "*.csv")
