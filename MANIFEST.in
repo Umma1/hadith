@@ -1,2 +1,2 @@
 include hadith/data/*.csv.gz
-include hadith/data/info/*.json
+include hadith/data/info/*.yaml
