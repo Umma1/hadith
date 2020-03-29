@@ -10,3 +10,12 @@
 ## Welcome to Hadith
 
 Hadith is python library that aims to help scholars of hadith to do quantitative research.
+
+
+<div dir="rtl">
+  
+  يمكنكم إيجاد مثال على كيفية استعمال حزمة حديث في هذا الدّفتر التّفاعلي على 
+  Colab : 
+  [تحليل الأخطاء الموجود في نقل الحديث](https://colab.research.google.com/drive/1o6O45HNgstu-BfKQyaEqTmcFYr74utzC)
+
+</div>
